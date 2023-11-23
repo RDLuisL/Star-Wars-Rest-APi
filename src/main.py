@@ -19,6 +19,13 @@ MIGRATE = Migrate(app, db)
 db.init_app(app)
 CORS(app)
 setup_admin(app)
+# Se crea una instancia de la aplicación Flask y se configura la conexión a la base de datos a través de la variable de entorno DB_CONNECTION_STRING.
+# Se desactiva el seguimiento de modificaciones a la base de datos (SQLALCHEMY_TRACK_MODIFICATIONS) para evitar advertencias.
+# Se realiza la configuración de CORS (Cross-Origin Resource Sharing) para permitir solicitudes desde diferentes dominios.
+# Se inicializa la extensión Flask-Migrate para gestionar las migraciones de la base de datos.
+# setup_admin(app): Configura la interfaz de administración, posiblemente utilizando Flask-Admin.
+
+
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
@@ -125,8 +132,19 @@ def delete_planet_fav(planet_id):
          db.session.commit()
          return "Planeta eliminado!"
     else: raise APIException("No logro eliminar el planeta!", status_code=404)
- 
+# Se define una función para manejar errores específicos (APIException) y devolver mensajes de error en formato JSON.
+# Se define una ruta ('/sitemap') que devuelve un sitemap generado a partir de los endpoints de la aplicación.
+# Definición de rutas y operaciones CRUD:
+
+# Se definen varias rutas que corresponden a diferentes endpoints de la API, proporcionando operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para diferentes modelos de la base de datos (User, People, Planet, Favorite_people, Favorite_planet).
+# Se utilizan las funciones query de SQLAlchemy para interactuar con la base de datos y devolver datos en formato JSON.
+
+
+
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
     app.run(host='0.0.0.0', port=PORT, debug=False)
+# El bloque if __name__ == '__main__': asegura que el servidor se inicie solo si se ejecuta el script directamente (no cuando se importa como un módulo).
+# Se obtiene el número de puerto de la variable de entorno PORT o se utiliza el valor predeterminado 3000.
+# La aplicación se ejecuta en el host '0.0.0.0' para que sea accesible desde cualquier dirección IP en la red.

@@ -18,6 +18,11 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
+# Este modelo representa a un usuario con campos como id, email, password, y is_active.
+# La función __repr__ proporciona una representación de cadena del objeto para facilitar la depuración.
+# La función serialize devuelve una representación serializada del objeto que puede ser convertida a JSON.
+
+
 class People (db.Model):
     id= db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String(30), unique=False, nullable=False)
@@ -38,6 +43,7 @@ class People (db.Model):
 
                 # do not serialize the password, its a security breach
             }
+# Este modelo representa a un personaje (People) con campos como id, name, gender, hair_color, y skin_color.
 
 class Planet (db.Model):
     id= db.Column(db.Integer, primary_key=True)
@@ -59,7 +65,7 @@ class Planet (db.Model):
 
                 # do not serialize the password, its a security breach
             }
-
+# Este modelo representa a un planeta (Planet) con campos como id, name, population, terrain, y climate.
 
 class Favorite_people(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -79,6 +85,7 @@ class Favorite_people(db.Model):
             "email": self.email
             # do not serialize the password, its a security breach
         }
+# Este modelo representa la relación entre usuarios y personajes favoritos (Favorite_people).
 
 class Favorite_planet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -98,3 +105,4 @@ class Favorite_planet(db.Model):
             "email": self.email
             # do not serialize the password, its a security breach
         }
+# Este modelo representa la relación entre usuarios y planetas favoritos (Favorite_planet).
